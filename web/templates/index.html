@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureAuth - Discord Security & Verification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1b1f 0%, #2b2d31 100%);
+            min-height: 100vh;
+            color: #ffffff;
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem 2rem;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #5865f2;
+            text-decoration: none;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .button {
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .login-button {
+            background: #5865f2;
+            color: white;
+        }
+
+        .verify-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #5865f2, #7289da);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: #b9bbbe;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #5865f2;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .feature-card p {
+            color: #b9bbbe;
+            line-height: 1.5;
+        }
+
+        .stats {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item h4 {
+            font-size: 2.5rem;
+            color: #5865f2;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: #b9bbbe;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #72767d;
+            background: rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <span>🛡️</span>
+            SecureAuth
+        </a>
+        <div class="nav-buttons">
+            <a href="/login" class="button login-button">Login</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Secure Your Discord Community</h1>
+        <p>
+            SecureAuth provides enterprise-grade security and verification for Discord servers. 
+            Protect your community from raids, spam, and unauthorized access.
+        </p>
+        <a href="/login" class="button login-button">Get Started</a>
+    </section>
+
+    <div class="features">
+        <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Advanced Security</h3>
+            <p>Military-grade encryption and verification protocols to keep your server safe from unauthorized access.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Instant Verification</h3>
+            <p>Quick and efficient verification process that takes seconds to complete while maintaining high security.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🤖</div>
+            <h3>Smart Bot Integration</h3>
+            <p>Seamlessly integrates with Discord's systems for automated verification and security monitoring.</p>
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h4>1,250+</h4>
+                <p>Active Servers</p>
+            </div>
+            <div class="stat-item">
+                <h4>50K+</h4>
+                <p>Members Protected</p>
+            </div>
+            <div class="stat-item">
+                <h4>98.5%</h4>
+                <p>Success Rate</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        © 2024 SecureAuth - Discord Security & Verification Service
+    </footer>
+</body>
+</html> 

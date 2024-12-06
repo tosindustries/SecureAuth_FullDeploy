@@ -1,0 +1,16 @@
+[Unit]
+Description=SecureAuth Gunicorn Service
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/path/to/SecureAuth_FullDeploy/web
+Environment="PATH=/path/to/SecureAuth_FullDeploy/venv/bin"
+Environment="FLASK_ENV=production"
+Environment="FLASK_APP=security_monitor"
+ExecStart=/path/to/SecureAuth_FullDeploy/venv/bin/gunicorn --workers 3 --bind 127.0.0.1:5000 wsgi:application --error-logfile /var/log/secureauth/error.log --access-logfile /var/log/secureauth/access.log
+Restart=always
+
+[Install]
+WantedBy=multi-user.target 

